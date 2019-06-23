@@ -51,26 +51,26 @@
 <script>
 export default {
   methods: {
-    deleteGroup() {
-      let confirmation = confirm("Czy na pewno chcesz usunąć grupę?")
+    deleteGroup () {
+      let confirmation = confirm('Czy na pewno chcesz usunąć grupę?')
 
-      if(confirmation) {
+      if (confirmation) {
         console.log(this.group)
         this.$store.dispatch('deleteGroup', this.group.pk).then(() => {
-          this.$router.push("/groups")
-        })        
+          this.$router.push('/groups')
+        })
       }
     }
   },
 
   computed: {
-    group() {
-      let contextGroup = this.$store.state.groups.filter(group => group.name === this.$route.params.name)
+    group () {
+      let contextGroup = this.$store.state.users.groups.filter(group => group.name === this.$route.params.name)
       // filter zwraca tablicę, dlatego trzeba zwrócić pierwszy obiekt explicit
       return contextGroup[0]
     }
   }
-};
+}
 </script>
 
 <style scoped>

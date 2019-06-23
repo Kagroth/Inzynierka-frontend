@@ -34,36 +34,36 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       form: {
-        title: "",
-        language: "",
-        level: "",
-        content: ""
+        title: '',
+        language: '',
+        level: '',
+        content: ''
       }
-    };
+    }
   },
 
   methods: {
-    createExercise(event) {
-      event.preventDefault();
+    createExercise (event) {
+      event.preventDefault()
 
       for (let field in this.form) {
-        if (this.form[field] === "") {
-          alert("Nie podano wszystkich danych!");
-          return;
+        if (this.form[field] === '') {
+          alert('Nie podano wszystkich danych')
+          return
         }
       }
 
-      console.log(this.form);
+      console.log(this.form)
 
-      this.$store.dispatch("createExercise", this.form).then(responseData => {
-        alert(responseData.message);
-      });
+      this.$store.dispatch('createExercise', this.form).then(responseData => {
+        alert(responseData.message)
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped>

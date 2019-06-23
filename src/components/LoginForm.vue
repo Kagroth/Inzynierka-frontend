@@ -30,39 +30,39 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       form: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       }
-    };
+    }
   },
 
   methods: {
-    loginUser(event) {
-      event.preventDefault();
+    loginUser (event) {
+      event.preventDefault()
 
       for (let field in this.form) {
-        if (this.form[field] === "") {
-          alert("Nie podano wszystkich danych!");
-          return;
+        if (this.form[field] === '') {
+          alert('Nie podano wszystkich danych!')
+          return
         }
       }
 
       this.$store
-        .dispatch("loginUser", this.form)
+        .dispatch('users/loginUser', this.form)
         .then(() => {
-          alert("Zalogowano!");
-          console.log("Przekierowuje do /groups!");
-          this.$router.push("/");
+          alert('Zalogowano')
+          console.log('Przekierowuje do /groups')
+          this.$router.push('/')
         })
         .catch(() => {
-          alert("Niepowodzenie logowania");
-        });
+          alert('Niepowodzenie logowania')
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>

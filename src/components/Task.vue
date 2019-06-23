@@ -9,24 +9,24 @@
             <exercise :pk="task.exercise.pk"></exercise>
         </div>
         <div v-else>
-        </div>        
+        </div>
     </div>
 </template>
 <script>
 import Exercise from '@/components/Exercise'
 
 export default {
-    components: {
-        "exercise": Exercise
-    },
+  components: {
+    'exercise': Exercise
+  },
 
-    computed: {
-        task() {
-            let contextTask = this.$store.state.tasks.filter(task => task.pk === this.$route.params.pk)
-            // filter zwraca tablicę, dlatego trzeba zwrócić pierwszy obiekt explicit
-            return contextTask[0]    
-        }
+  computed: {
+    task () {
+      let contextTask = this.$store.state.tasks.tasks.filter(task => task.pk === this.$route.params.pk)
+      // filter zwraca tablicę, dlatego trzeba zwrócić pierwszy obiekt explicit
+      return contextTask[0]
     }
+  }
 }
 </script>
 <style scoped>

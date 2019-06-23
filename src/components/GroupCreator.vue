@@ -22,8 +22,8 @@
           <v-flex xs12 md4 offset-md4>
             <v-btn color="primary" @click="createGroup">Utwórz</v-btn>
           </v-flex>
-        </v-layout>       
-        
+        </v-layout>
+
         <v-layout row wrap>
             <v-flex md4 offset-md4>
                 <h3>Wybrani użytkownicy: </h3>
@@ -59,71 +59,72 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       currentSelectedUser: null,
       form: {
-        groupName: "",
+        groupName: '',
         selectedUsers: []
       }
-    };
+    }
   },
 
   methods: {
-    addUser() {
-      if(this.currentSelectedUser === null) {
-          return
+    addUser () {
+      if (this.currentSelectedUser === null) {
+        return
       }
 
       if (this.form.selectedUsers.includes(this.currentSelectedUser)) {
-          return
+        return
       }
 
-      this.form.selectedUsers.push(this.currentSelectedUser);
+      this.form.selectedUsers.push(this.currentSelectedUser)
     },
 
-    createGroup(event) {
-      event.preventDefault();
+    createGroup (event) {
+      event.preventDefault()
 
-      if (this.form.groupName === "") {
-        alert("Nie podano nazwy grupy!");
-        return;
+      if (this.form.groupName === '') {
+        alert('Nie podano nazwy grupy')
+        return
       }
 
       this.$store
-        .dispatch("createGroup", this.form)
+        .dispatch('createGroup', this.form)
         .then(response => {
-          let message = response.data.message;
-          alert(message);
+          let message = response.data.message
+          alert(message)
 
-          if (message === "Grupa została utworzona")
-            this.$router.push("/groups");
+          if (message === 'Grupa została utworzona') {
+            this.$router.push('/groups')
+          }
         })
         .catch(() => {
-          console.log("Nie udalo sie utworzyc grupy");
-          alert("Nie udalo sie utworzyc grupy");
-        });
+          console.log('Nie udalo sie utworzyc grupy')
+          alert('Nie udalo sie utworzyc grupy')
+        })
     }
   },
 
-  created() {
+  created () {
     this.$store
-      .dispatch("getAllStudents")
+      .dispatch('getAllStudents')
       .then(() => {
-        console.log("Pobrano userow!");
+        console.log('Pobrano userow')
         console.log(this.$store.state.users)
       })
       .catch(() => {
-        console.log("Nie udalo sie pobrac userow");
-      });
+        console.log('Nie udalo sie pobrac userow')
+      })
   },
 
   computed: {
-    users() {
-      return this.$store.state.users;
+    users () {
+      return this.$store.state.users.users
     }
   }
-};
+}
 </script>
 
 <style scoped>

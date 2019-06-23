@@ -20,6 +20,6 @@ new Vue({
   template: '<App/>',
 
   created () {
-    this.$store.commit('init')
+    this.$store.commit('users/init')
   }
 })

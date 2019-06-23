@@ -39,26 +39,26 @@
 
 <script>
 export default {
-  created() {
-    this.$store.dispatch("getAllTasks")
+  created () {
+    this.$store.dispatch('getAllTasks')
   },
 
   methods: {
-    showTaskDetails(task) {
-      this.$router.push({ name: "TaskDetails", params: { pk: task.pk } })
+    showTaskDetails (task) {
+      this.$router.push({ name: 'TaskDetails', params: { pk: task.pk } })
     }
   },
 
   computed: {
-    tasks() {
-      return this.$store.state.tasks
+    tasks () {
+      return this.$store.state.tasks.tasks
     },
 
-    userType() {
-      return this.$store.state.profile.userType
+    userType () {
+      return this.$store.state.users.profile.userType
     }
   }
-};
+}
 </script>
 
 <style scoped>

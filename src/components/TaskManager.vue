@@ -21,22 +21,21 @@
             <li><router-link to="/tasks/exercises">Cwiczenia</router-link></li>            
             <li><router-link to="/tasks/tests">Kolokwia</router-link></li>
         </ul>
-        <router-view></router-view>    
+        <router-view></router-view>
         -->
-    </div>    
+    </div>
 </template>
 
 <script>
 export default {
-    computed: {
-        userType() {            
-            return this.$store.state.profile.userType
-        }
+  computed: {
+    userType () {
+      return this.$store.state.users.profile.userType
     }
+  }
 }
 </script>
 
 <style scoped>
 
 </style>
-

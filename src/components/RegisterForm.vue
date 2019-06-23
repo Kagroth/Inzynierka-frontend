@@ -91,7 +91,7 @@ export default {
       }
 
       console.log('Username in component: ' + this.form.username)
-      this.$store.dispatch('createUser', this.form)
+      this.$store.dispatch('users/createUser', this.form)
     }
   }
 }
