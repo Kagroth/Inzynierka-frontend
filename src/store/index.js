@@ -6,10 +6,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: "",
-    isLogged: "",
-    
-    username: "",
+    token: '',
+    isLogged: '',
+    username: '',
     profile: {},
 
     groups: [],
@@ -21,11 +20,10 @@ export default new Vuex.Store({
 
   mutations: {
     init (state) {
-      state.token = localStorage.getItem('token'),
-      state.isLogged = (localStorage.getItem('token') !== "null"
-                        && localStorage.getItem('token') !== undefined)
-      state.username = localStorage.getItem('username') || ""
-      
+      state.token = localStorage.getItem('token')
+      state.isLogged = (localStorage.getItem('token') !== 'null' &&
+                        localStorage.getItem('token') !== undefined)
+      state.username = localStorage.getItem('username') || ''      
     },
 
     setToken (state, payload) {
@@ -55,126 +53,129 @@ export default new Vuex.Store({
       state.username = null
     },
 
-    setExercises(state, payload) {
+    setExercises (state, payload) {
       console.log(payload)
       state.exercises = payload
     },
 
-    setTasks(state, payload) {
+    setTasks (state, payload) {
       console.log(payload)
       state.tasks = payload
     }
   },
 
   actions: {
-    createUser ({commit}, payload) {
-      console.log("Wysylam request rejestracji")
+    createUser (context, payload) {
+      console.log('Wysylam request rejestracji')
 
-      axios.post("http://localhost:8000/users/", payload)
-           .then(response => console.log(response.data))
-           .catch(error => console.log(error.response))
+      axios.post('http://localhost:8000/users/', payload)
+        .then(response => console.log(response.data))
+        .catch(error => console.log(error.response))
     },
 
-    loginUser ({commit, dispatch}, payload) {
-      console.log("Wysylam request logowania");
+    loginUser ({ commit, dispatch }, payload) {
+      console.log('Wysylam request logowania')
 
       return new Promise((resolve, reject) => {
-        axios.post("http://localhost:8000/token/", payload)
-           .then(response => {
-             console.log(response.data.access);
-             commit('setToken', {
-               token: response.data.access,
-               username: payload.username
-             });
-             dispatch('setLoggedUserData')
+        axios.post('http://localhost:8000/token/', payload)
+          .then(response => {
+            console.log(response.data.access)
+            commit('setToken', {
+              token: response.data.access,
+              username: payload.username
+            })
+            dispatch('setLoggedUserData')
 
-             resolve()
-           })
-           .catch(error => {            
-             console.log(error.response);
-             reject()
-           })
-      }
-      )      
-    },
-
-    setLoggedUserData({commit, state}) {
-      console.log("Wysylam request logowania");
-
-      return new Promise((resolve, reject) => {
-        axios.get("http://localhost:8000/profile/" + state.username)
-           .then(response => {
-             console.log(response.data);
-             commit('setProfile', response.data)
-             resolve()
-           })
-           .catch(error => {            
-             console.log(error.response);
-             reject()
-           })
+            resolve()
+          })
+          .catch(error => {
+            console.log(error.response)
+            reject(error)
+          })
       })
     },
 
-    getAllUsers({commit}, payload) {
-      console.log("Wysylam zadanie pobrania userow!");
+    setLoggedUserData ({ commit, state }) {
+      console.log('Wysylam request logowania')
+
+      return new Promise((resolve, reject) => {
+        axios.get('http://localhost:8000/profile/' + state.username)
+          .then(response => {
+            console.log(response.data)
+            commit('setProfile', response.data)
+            resolve()
+          })
+          .catch(error => {
+            console.log(error.response)
+            reject(error)
+          })
+      })
+    },
+
+    getAllUsers ({ commit }, payload) {
+      console.log('Wysylam zadanie pobrania userow!')
 
       return new Promise((resolve, reject) => {
         axios.get('http://localhost:8000/users/')
-             .then((response) => {
-               commit('setUsers', response.data)
-               resolve();
-             })
-             .catch(() => {
-               console.log("Blad pobierania userow");
-               reject();
-             })
+          .then((response) => {
+            commit('setUsers', response.data)
+            resolve()
+          })
+          .catch(error => {
+            console.log('Blad pobierania userow')
+            reject(error)
+          })
       })
     },
 
-    getAllStudents({commit}, payload) {
-      console.log("Wysylam zadanie pobrania studentow!");
+    getAllStudents ({ commit }, payload) {
+      console.log('Wysylam zadanie pobrania studentow!')
 
       return new Promise((resolve, reject) => {
         axios.get('http://localhost:8000/students/')
-             .then((response) => {
-               commit('setUsers', response.data)
-               resolve();
-             })
-             .catch(() => {
-               console.log("Blad pobierania userow");
-               reject();
-             })
+          .then((response) => {
+            commit('setUsers', response.data)
+            resolve()
+          })
+          .catch(error => {
+            console.log('Blad pobierania userow')
+            reject(error)
+          })
       })
     },
 
-    getAllGroups ({commit}, payload) {
-      console.log("Wysylam zadanie wyswietlenia grup!")
+    getAllGroups ({ commit }, payload) {
+      console.log('Wysylam zadanie wyswietlenia grup!')
 
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
-        axios.get("http://localhost:8000/groups/", {headers: {
+        let authHeader = 'Bearer ' + this.state.token
+        axios.get('http://localhost:8000/groups/', { headers: {
           'Authorization': authHeader
-        }})
-           .then((response) => {
-              commit('setGroups', response.data)
-              resolve()
-           })
-           .catch(() => {
-            alert("Blad pobierania grup")
-            reject()
-           })
-      })      
+        } })
+          .then((response) => {
+            commit('setGroups', response.data)
+            resolve()
+          })
+          .catch(error => {
+            alert('Blad pobierania grup')
+            reject(error)
+          })
+      })
     },
 
-    createGroup ({commit}, payload) {
+    createGroup ({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
+        let authHeader = 'Bearer ' + this.state.token
 
-        axios.post("http://localhost:8000/groups/", {
-          params: payload},
-          {headers: {
-          'Authorization': authHeader
-        }})
+        axios.post('http://localhost:8000/groups/',
+          {
+            params: payload
+          },
+          {
+            headers: {
+              'Authorization': authHeader
+            }
+          })
           .then((response) => {
             resolve(response)
           })
@@ -184,14 +185,16 @@ export default new Vuex.Store({
       })
     },
 
-    deleteGroup({commit}, pk) {
+    deleteGroup ({ commit }, pk) {
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
+        let authHeader = 'Bearer ' + this.state.token
 
-        axios.delete("http://localhost:8000/groups/" + pk,
-          {headers: {
-          'Authorization': authHeader
-        }})
+        axios.delete('http://localhost:8000/groups/' + pk,
+          {
+            headers: {
+              'Authorization': authHeader
+            }
+          })
           .then((response) => {
             console.log(response)
             resolve(response)
@@ -202,53 +205,63 @@ export default new Vuex.Store({
       })
     },
 
-    getAllExercises({commit}) {
-      console.log("Wysylam zadanie pobrania ćwiczeń!");
+    getAllExercises ({ commit }) {
+      console.log('Wysylam zadanie pobrania ćwiczeń!')
 
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
-        axios.get('http://localhost:8000/exercises/', {headers: {
-          'Authorization': authHeader
-        }})
-             .then((response) => {
-               commit('setExercises', response.data)
-               resolve();
-             })
-             .catch(() => {
-               console.log("Blad pobierania cwiczen");
-               reject();
-             })
+        let authHeader = 'Bearer ' + this.state.token
+        axios.get('http://localhost:8000/exercises/',
+          {
+            headers: {
+              'Authorization': authHeader
+            }
+          })
+          .then((response) => {
+            commit('setExercises', response.data)
+            resolve()
+          })
+          .catch(error => {
+            console.log('Blad pobierania cwiczen')
+            reject(error)
+          })
       })
     },
 
-    getAllTasks({commit}) {
-      console.log("Wysylam zadanie pobrania zadania!");
+    getAllTasks ({ commit }) {
+      console.log('Wysylam zadanie pobrania zadania!')
 
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
-        axios.get('http://localhost:8000/tasks/', {headers: {
-          'Authorization': authHeader
-        }})
-             .then((response) => {
-               commit('setTasks', response.data)
-               resolve();
-             })
-             .catch(() => {
-               console.log("Blad pobierania zadan");
-               reject();
-             })
+        let authHeader = 'Bearer ' + this.state.token
+        axios.get('http://localhost:8000/tasks/',
+          {
+            headers: {
+              'Authorization': authHeader
+            }
+          })
+          .then((response) => {
+            commit('setTasks', response.data)
+            resolve()
+          })
+          .catch(error => {
+            console.log('Blad pobierania zadan')
+            reject(error)
+          })
       })
     },
 
-    createExercise({commit}, payload) {
+    createExercise ({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
+        let authHeader = 'Bearer ' + this.state.token
 
-        axios.post("http://localhost:8000/exercises/", {
-          params: payload},
-          {headers: {
-          'Authorization': authHeader
-        }})
+        axios.post('http://localhost:8000/exercises/', 
+          {
+            params: payload
+          },
+          {
+            headers: {
+              'Authorization': authHeader
+            }
+          })
           .then((response) => {
             console.log(response.data)
             resolve(response.data)
@@ -259,15 +272,19 @@ export default new Vuex.Store({
       })
     },
 
-    createTask({commit}, payload) {
+    createTask ({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        let authHeader = "Bearer " + this.state.token;
+        let authHeader = 'Bearer ' + this.state.token
 
-        axios.post("http://localhost:8000/tasks/", {
-          params: payload},
-          {headers: {
-          'Authorization': authHeader
-        }})
+        axios.post('http://localhost:8000/tasks/',
+          {
+            params: payload
+          },
+          {
+            headers: {
+              'Authorization': authHeader
+            }
+          })
           .then((response) => {
             console.log(response.data)
             resolve(response.data)
