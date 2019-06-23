@@ -53,11 +53,11 @@ export default {
 
   computed: {
     groups () {
-      return this.$store.state.groups
+      return this.$store.state.users.groups
     },
 
     userType () {
-      return this.$store.state.profile.userType
+      return this.$store.state.users.profile.userType
     }
   },
 
@@ -65,9 +65,10 @@ export default {
     this.$store
       .dispatch('users/getAllGroups')
       .then(() => {
-        this.groups = this.$store.state.groups
+        this.groups = this.$store.state.users.groups
       })
-      .catch(() => {
+      .catch(error => {
+        console.log(error)
         console.log('Nie udalo sie pobrac grup')
         alert('Nie udalo sie zwrocic grup')
       })

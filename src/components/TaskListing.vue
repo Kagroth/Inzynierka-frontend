@@ -40,7 +40,7 @@
 <script>
 export default {
   created () {
-    this.$store.dispatch('getAllTasks')
+    this.$store.dispatch('tasks/getAllTasks')
   },
 
   methods: {

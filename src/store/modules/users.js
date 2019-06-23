@@ -83,7 +83,7 @@ const actions = {
   },
 
   setLoggedUserData ({ commit, state }) {
-    console.log('Wysylam request logowania')
+    console.log('Wysylam request pobrania danych usera')
 
     return new Promise((resolve, reject) => {
       axios.get('http://localhost:8000/profile/' + state.username)
@@ -131,16 +131,17 @@ const actions = {
     })
   },
 
-  getAllGroups ({ commit }, payload) {
+  getAllGroups (context, payload) {
     console.log('Wysylam zadanie wyswietlenia grup!')
 
     return new Promise((resolve, reject) => {
-      let authHeader = 'Bearer ' + this.state.token
+      let authHeader = 'Bearer ' + context.state.token
+      console.log(authHeader)
       axios.get('http://localhost:8000/groups/', { headers: {
         'Authorization': authHeader
       } })
         .then((response) => {
-          commit('setGroups', response.data)
+          context.commit('setGroups', response.data)
           resolve()
         })
         .catch(error => {

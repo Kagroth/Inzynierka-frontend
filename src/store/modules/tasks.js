@@ -44,11 +44,12 @@ const actions = {
     })
   },
 
-  getAllTasks ({ commit }) {
+  getAllTasks (context) {
     console.log('Wysylam zadanie pobrania zadania!')
 
     return new Promise((resolve, reject) => {
-      let authHeader = 'Bearer ' + this.state.token
+      let authHeader = 'Bearer ' + context.state.token
+      console.log(authHeader)
       axios.get('http://localhost:8000/tasks/',
         {
           headers: {
@@ -56,7 +57,7 @@ const actions = {
           }
         })
         .then((response) => {
-          commit('setTasks', response.data)
+          context.commit('setTasks', response.data)
           resolve()
         })
         .catch(error => {
