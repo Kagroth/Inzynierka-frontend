@@ -32,13 +32,13 @@
 export default {
   computed: {
     isLogged () {
-      return this.$store.state.users.isLogged
+      return this.$store.state.auth.isLogged
     }
   },
 
   methods: {
     logout () {
-      this.$store.commit('users/logout')
+      this.$store.commit('auth/logout')
       this.$router.push('/')
     }
   }

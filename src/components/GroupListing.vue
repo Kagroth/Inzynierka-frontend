@@ -23,7 +23,7 @@
     <p><router-link to="/newGroup">Utwórz grupe</router-link></p>
     <h2>Grupy:</h2>
     <ul>
-      <li :key="group" v-for="group in groups"> 
+      <li :key="group" v-for="group in groups">
         <span>{{ group.name }}</span> - <span @click="showGroupDetails(group)">Podgląd</span></li>
     </ul>
     -->
@@ -57,13 +57,13 @@ export default {
     },
 
     userType () {
-      return this.$store.state.users.profile.userType
+      return this.$store.state.auth.profile.userType
     }
   },
 
   created () {
     this.$store
-      .dispatch('users/getAllGroups')
+      .dispatch('users/loadGroups')
       .then(() => {
         this.groups = this.$store.state.users.groups
       })
