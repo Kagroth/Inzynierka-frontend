@@ -1,5 +1,4 @@
-import axios from 'axios'
-// import API from '@/api'
+import API from '@/api'
 
 const state = {
   token: '',
@@ -26,6 +25,7 @@ const mutations = {
     state.token = localStorage.getItem('token')
     state.isLogged = (localStorage.getItem('token') != null)
     state.username = payload.username
+    API.setAuthToken(payload.token)
     console.log(state.username)
   },
 
@@ -42,36 +42,38 @@ const mutations = {
 }
 
 const actions = {
-  createUser (context, payload) {
+  async createUser (context, registerForm) {
     console.log('Wysylam request rejestracji')
 
-    axios.post('http://localhost:8000/users/', payload)
-      .then(response => console.log(response.data))
-      .catch(error => console.log(error.response))
+    let registerResponse = {}
+
+    try {
+      registerResponse = await API.createUser(registerForm)
+      console.log(registerResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
   },
 
-  loginUser ({ commit, dispatch }, payload) {
+  async loginUser ({ commit, dispatch, state }, loginForm) {
     console.log('Wysylam request logowania')
+    let loginResponse = {}
+    let userDataResponse = {}
 
-    return new Promise((resolve, reject) => {
-      axios.post('http://localhost:8000/token/', payload)
-        .then(response => {
-          console.log(response.data.access)
-          commit('setToken', {
-            token: response.data.access,
-            username: payload.username
-          })
-          dispatch('setLoggedUserData')
+    try {
+      loginResponse = await API.loginUser(loginForm)
+      commit('setToken', {
+        token: loginResponse.data.access,
+        username: loginForm.username
+      })
 
-          resolve()
-        })
-        .catch(error => {
-          console.log(error.response)
-          reject(error)
-        })
-    })
-  },
-
+      userDataResponse = await API.loadUserData(state.username)
+      commit('setProfile', userDataResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
+  } // ,
+/*
   setLoggedUserData ({ commit, state }) {
     console.log('Wysylam request pobrania danych usera')
 
@@ -87,7 +89,7 @@ const actions = {
           reject(error)
         })
     })
-  }
+  } */
 }
 
 export default {
