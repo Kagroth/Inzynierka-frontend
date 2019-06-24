@@ -91,7 +91,7 @@ export default {
       }
 
       this.$store
-        .dispatch('createGroup', this.form)
+        .dispatch('users/createGroup', this.form)
         .then(response => {
           let message = response.data.message
           alert(message)
@@ -109,10 +109,10 @@ export default {
 
   created () {
     this.$store
-      .dispatch('getAllStudents')
+      .dispatch('users/loadStudents')
       .then(() => {
         console.log('Pobrano userow')
-        console.log(this.$store.state.users)
+        console.log(this.$store.state.users.users)
       })
       .catch(() => {
         console.log('Nie udalo sie pobrac userow')
