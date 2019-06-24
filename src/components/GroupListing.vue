@@ -10,7 +10,7 @@
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
-      <v-layout row wrap justify-space-around v-for="group in groups" :key="group" mt-4>
+      <v-layout row wrap justify-space-around v-for="group in groups" :key="group.pk" mt-4>
         <v-flex md6 offset-md2>
           <h3>{{ group.name }}</h3>
         </v-flex>
@@ -52,12 +52,20 @@ export default {
   },
 
   computed: {
-    groups () {
-      return this.$store.state.users.groups
+    groups: {
+      get () {
+        return this.$store.state.users.groups
+      },
+
+      set (newValue) {}
     },
 
-    userType () {
-      return this.$store.state.auth.profile.userType
+    userType: {
+      get () {
+        return this.$store.state.auth.profile.userType
+      },
+
+      set (newValue) {}
     }
   },
 
