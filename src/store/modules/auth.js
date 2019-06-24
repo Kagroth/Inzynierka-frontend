@@ -72,24 +72,7 @@ const actions = {
     } catch (e) {
       console.log(e)
     }
-  } // ,
-/*
-  setLoggedUserData ({ commit, state }) {
-    console.log('Wysylam request pobrania danych usera')
-
-    return new Promise((resolve, reject) => {
-      axios.get('http://localhost:8000/profile/' + state.username)
-        .then(response => {
-          console.log(response.data)
-          commit('setProfile', response.data)
-          resolve()
-        })
-        .catch(error => {
-          console.log(error.response)
-          reject(error)
-        })
-    })
-  } */
+  }
 }
 
 export default {
