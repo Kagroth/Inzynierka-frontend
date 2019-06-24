@@ -51,7 +51,7 @@ export default {
       }
 
       this.$store
-        .dispatch('users/loginUser', this.form)
+        .dispatch('auth/loginUser', this.form)
         .then(() => {
           alert('Zalogowano')
           console.log('Przekierowuje do /groups')
