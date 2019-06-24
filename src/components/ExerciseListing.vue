@@ -32,7 +32,7 @@
 <script>
 export default {
   created () {
-    this.$store.dispatch('getAllExercises')
+    this.$store.dispatch('tasks/getAllExercises')
   },
 
   methods: {
@@ -46,7 +46,7 @@ export default {
 
   computed: {
     exercises () {
-      return this.$store.state.exercises
+      return this.$store.state.tasks.exercises
     }
   }
 }
