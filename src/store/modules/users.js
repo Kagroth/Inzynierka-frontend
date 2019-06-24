@@ -1,5 +1,4 @@
-import axios from 'axios'
-// import API from '@/api'
+import API from '@/api'
 
 const state = {
   users: [],
@@ -22,98 +21,66 @@ const mutations = {
 }
 
 const actions = {
-  getAllUsers ({ commit }, payload) {
-    console.log('Wysylam zadanie pobrania userow!')
+  async loadAllUsers ({ commit }) {
+    console.log('Wyslano request pobrania uzytkownikow')
 
-    return new Promise((resolve, reject) => {
-      axios.get('http://localhost:8000/users/')
-        .then((response) => {
-          commit('setUsers', response.data)
-          resolve()
-        })
-        .catch(error => {
-          console.log('Blad pobierania userow')
-          reject(error)
-        })
-    })
+    let loadUsersResponse = {}
+
+    try {
+      loadUsersResponse = await API.loadAllUsers()
+      console.log(loadUsersResponse)
+      commit('setUsers', loadUsersResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
   },
 
-  getAllStudents ({ commit }, payload) {
-    console.log('Wysylam zadanie pobrania studentow!')
+  async loadStudents ({ commit }) {
+    console.log('Wyslano request pobrania studentow')
 
-    return new Promise((resolve, reject) => {
-      axios.get('http://localhost:8000/students/')
-        .then((response) => {
-          commit('setUsers', response.data)
-          resolve()
-        })
-        .catch(error => {
-          console.log('Blad pobierania userow')
-          reject(error)
-        })
-    })
+    let loadStudentsResponse = {}
+
+    try {
+      loadStudentsResponse = await API.loadStudents()
+      console.log(loadStudentsResponse)
+      commit('setUsers', loadStudentsResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
   },
 
-  getAllGroups (context, payload) {
-    console.log('Wysylam zadanie wyswietlenia grup!')
+  async loadGroups ({ commit }, payload) {
+    let loadGroupsResponse = {}
 
-    return new Promise((resolve, reject) => {
-      let authHeader = 'Bearer ' + context.state.token
-      console.log(authHeader)
-      axios.get('http://localhost:8000/groups/', { headers: {
-        'Authorization': authHeader
-      } })
-        .then((response) => {
-          context.commit('setGroups', response.data)
-          resolve()
-        })
-        .catch(error => {
-          alert('Blad pobierania grup')
-          reject(error)
-        })
-    })
+    try {
+      loadGroupsResponse = await API.loadGroups()
+      console.log(loadGroupsResponse)
+      commit('setGroups', loadGroupsResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
   },
 
-  createGroup ({ commit }, payload) {
-    return new Promise((resolve, reject) => {
-      let authHeader = 'Bearer ' + this.state.token
+  async createGroup ({ commit }, newGroupData) {
+    let createGroupResponse = {}
 
-      axios.post('http://localhost:8000/groups/',
-        {
-          params: payload
-        },
-        {
-          headers: {
-            'Authorization': authHeader
-          }
-        })
-        .then((response) => {
-          resolve(response)
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
+    try {
+      createGroupResponse = await API.createGroup(newGroupData)
+      console.log(createGroupResponse)
+    } catch (e) {
+      console.log(e)
+    }
   },
 
-  deleteGroup ({ commit }, pk) {
-    return new Promise((resolve, reject) => {
-      let authHeader = 'Bearer ' + this.state.token
+  async deleteGroup ({ commit }, pk) {
+    let deleteGroupResponse = {}
 
-      axios.delete('http://localhost:8000/groups/' + pk,
-        {
-          headers: {
-            'Authorization': authHeader
-          }
-        })
-        .then((response) => {
-          console.log(response)
-          resolve(response)
-        })
-        .catch((error) => {
-          reject(error)
-        })
-    })
+    try {
+      deleteGroupResponse = await API.deleteGroup(pk)
+      console.log(deleteGroupResponse)
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 
