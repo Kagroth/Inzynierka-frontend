@@ -56,7 +56,7 @@ export default {
 
       if (confirmation) {
         console.log(this.group)
-        this.$store.dispatch('deleteGroup', this.group.pk).then(() => {
+        this.$store.dispatch('users/deleteGroup', this.group.pk).then(() => {
           this.$router.push('/groups')
         })
       }
@@ -65,9 +65,9 @@ export default {
 
   computed: {
     group () {
-      let contextGroup = this.$store.state.users.groups.filter(group => group.name === this.$route.params.name)
-      // filter zwraca tablicę, dlatego trzeba zwrócić pierwszy obiekt explicit
-      return contextGroup[0]
+      let contextGroup = this.$store.state.users.groups.find(group => group.name === this.$route.params.name)
+
+      return contextGroup
     }
   }
 }

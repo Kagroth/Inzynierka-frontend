@@ -24,9 +24,9 @@ export default {
         filterParam = this.pk
       }
 
-      let contextExercise = this.$store.state.exercises.filter(exercise => exercise.pk === filterParam)
-      // filter zwraca tablicę, dlatego trzeba zwrócić pierwszy obiekt explicit
-      return contextExercise[0]
+      let contextExercise = this.$store.state.exercises.find(exercise => exercise.pk === filterParam)
+
+      return contextExercise
     }
   }
 }
