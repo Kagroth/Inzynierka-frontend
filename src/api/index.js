@@ -1,22 +1,44 @@
 import axios from 'axios'
 
 const APIInstance = axios.create({
-  baseURL: 'http://localhost:8000/',
-  headers: {
-    Authorization: `Bearer `
-  }
+  baseURL: 'http://localhost:8000/'
 })
 
 export default {
   APIInstance,
 
-  simpleGet () {
-    return new Promise((resolve, reject) => {
-      APIInstance.post('token/', {
-        username: 'jankowalek',
-        password: 'student123'
-      }).then(response => resolve(response))
-        .catch(error => reject(error))
-    })
+  setAuthToken (token) {
+    this.APIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  },
+
+  sendRequest (url, method, data = null) {
+    let config = {}
+
+    if (data === null) {
+      config = {
+        url: url,
+        method: method
+      }
+    } else {
+      config = {
+        url: url,
+        method: method,
+        data: data
+      }
+    }
+
+    return this.APIInstance.request(config)
+  },
+
+  loginUser (loginData) {
+    return this.sendRequest('token/', 'post', loginData)
+  },
+
+  createUser (registerData) {
+    return this.sendRequest('users/', 'post', registerData)
+  },
+
+  loadUserData (username) {
+    return this.sendRequest(`profile/${username}`, 'get')
   }
 }
