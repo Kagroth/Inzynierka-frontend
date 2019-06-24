@@ -1,4 +1,5 @@
 import axios from 'axios'
+import API from '@/api'
 
 const state = {
   token: '',
@@ -19,6 +20,10 @@ const mutations = {
     state.isLogged = (localStorage.getItem('token') !== 'null' &&
                       localStorage.getItem('token') !== undefined)
     state.username = localStorage.getItem('username') || ''
+
+    API.simpleGet()
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
   },
 
   setToken (state, payload) {
