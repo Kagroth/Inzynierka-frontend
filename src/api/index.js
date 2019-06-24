@@ -40,5 +40,25 @@ export default {
 
   loadUserData (username) {
     return this.sendRequest(`profile/${username}`, 'get')
+  },
+
+  loadAllUsers () {
+    return this.sendRequest('users/', 'get')
+  },
+
+  loadStudents () {
+    return this.sendRequest('students/', 'get')
+  },
+
+  loadGroups () {
+    return this.sendRequest('groups/', 'get')
+  },
+
+  createGroup (newGroupData) {
+    return this.sendRequest('groups/', 'post', newGroupData)
+  },
+
+  deleteGroup (primaryKey) {
+    return this.sendRequest('groups/', 'delete', primaryKey)
   }
 }
