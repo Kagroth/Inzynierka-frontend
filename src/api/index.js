@@ -60,5 +60,9 @@ export default {
 
   deleteGroup (primaryKey) {
     return this.sendRequest('groups/', 'delete', primaryKey)
+  },
+
+  loadAllExercises () {
+    return this.sendRequest('exercises/', 'get')
   }
 }
