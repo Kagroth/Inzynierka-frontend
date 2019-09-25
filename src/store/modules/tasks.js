@@ -1,4 +1,5 @@
-import axios from 'axios'
+// import axios from 'axios'
+import API from '@/api'
 
 const state = {
   exercises: [],
@@ -22,6 +23,61 @@ const mutations = {
 }
 
 const actions = {
+  async getAllExercises ({ commit }) {
+    console.log('Wysylam zadanie pobrania wszystkich ćwiczeń')
+
+    let getAllExercisesResponse = {}
+
+    try {
+      getAllExercisesResponse = await API.loadAllExercises()
+      console.log(getAllExercisesResponse)
+      commit('setExercises', getAllExercisesResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  async getAllTasks ({ commit }) {
+    console.log('Wysylam zadanie pobrania wszystkich zadan')
+
+    let getAllTasksResponse = {}
+
+    try {
+      getAllTasksResponse = await API.loadAllTasks()
+      console.log(getAllTasksResponse)
+      commit('setTasks', getAllTasksResponse.data)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  async createExercise ({ commit }, newExerciseData) {
+    console.log('Wysylam zadanie utworzenia nowego cwiczenia')
+
+    let createExerciseResponse = {}
+
+    try {
+      createExerciseResponse = await API.createExercise(newExerciseData)
+      console.log(createExerciseResponse)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  async createTask ({ commit }, newTaskData) {
+    console.log('Wysylam zadanie utworzenia nowego zadania')
+
+    let createTaskResponse = {}
+
+    try {
+      createTaskResponse = await API.createTask(newTaskData)
+      console.log(createTaskResponse)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  /*
   getAllExercises ({ commit }) {
     console.log('Wysylam zadanie pobrania ćwiczeń!')
 
@@ -43,7 +99,9 @@ const actions = {
         })
     })
   },
+  */
 
+  /*
   getAllTasks (context) {
     console.log('Wysylam zadanie pobrania zadania!')
 
@@ -66,8 +124,9 @@ const actions = {
         })
     })
   },
+  */
 
-  createExercise ({ commit }, payload) {
+  /* createExercise ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       let authHeader = 'Bearer ' + this.state.token
 
@@ -88,9 +147,9 @@ const actions = {
           reject(error)
         })
     })
-  },
+  }, */
 
-  createTask ({ commit }, payload) {
+  /* createTask ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       let authHeader = 'Bearer ' + this.state.token
 
@@ -111,7 +170,7 @@ const actions = {
           reject(error)
         })
     })
-  }
+  } */
 }
 
 export default {
