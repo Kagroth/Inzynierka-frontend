@@ -68,5 +68,9 @@ export default {
 
   loadAllTasks () {
     return this.sendRequest('tasks/', 'get')
+  },
+
+  createExercise (newExerciseData) {
+    return this.sendRequest('exercises/', 'post', newExerciseData)
   }
 }
