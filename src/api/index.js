@@ -72,5 +72,9 @@ export default {
 
   createExercise (newExerciseData) {
     return this.sendRequest('exercises/', 'post', newExerciseData)
+  },
+
+  createTask (newTaskData) {
+    return this.sendRequest('tasks/', 'post', newTaskData)
   }
 }
