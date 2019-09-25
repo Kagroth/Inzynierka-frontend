@@ -58,7 +58,7 @@ export default {
 
       console.log(this.form)
 
-      this.$store.dispatch('createExercise', this.form).then(responseData => {
+      this.$store.dispatch('tasks/createExercise', this.form).then(responseData => {
         alert(responseData.message)
       })
     }

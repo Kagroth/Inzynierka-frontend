@@ -67,7 +67,7 @@ export default {
 
       console.log(this.form)
 
-      this.$store.dispatch('createTask', this.form).then(responseData => {
+      this.$store.dispatch('tasks/createTask', this.form).then(responseData => {
         alert(responseData.message)
       })
     }
@@ -86,7 +86,7 @@ export default {
 
   created () {
     this.$store
-      .dispatch('getAllStudents')
+      .dispatch('users/loadStudents')
       .then(() => {
         console.log('Pobrano userow')
       })
@@ -95,7 +95,7 @@ export default {
       })
 
     this.$store
-      .dispatch('getAllGroups')
+      .dispatch('users/loadGroups')
       .then(() => {
         console.log('Pobrano grupy')
       })
@@ -104,7 +104,7 @@ export default {
       })
 
     this.$store
-      .dispatch('getAllExercises')
+      .dispatch('tasks/getAllExercises')
       .then(() => {
         console.log('Pobrano cwiczenia')
       })
