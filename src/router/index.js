@@ -54,11 +54,11 @@ export default new Router({
         {
           path: 'tasks',
           name: 'TaskListing',
-          component: TaskListing,
+          component: TaskListing
         },
         {
           path: 'tasks/:pk',
-          name: "TaskDetails",
+          name: 'TaskDetails',
           component: Task
         },
         {
