@@ -55,7 +55,7 @@ export default {
     },
 
     userType () {
-      return this.$store.state.users.profile.userType
+      return this.$store.state.auth.profile.userType
     }
   }
 }
