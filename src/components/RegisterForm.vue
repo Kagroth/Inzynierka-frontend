@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import { required, sameAs, minLength, alpha, alphaNum, email } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
@@ -55,19 +57,56 @@ export default {
     }
   },
 
+  validations: {
+    form: {
+      firstname: {
+        required,
+        alpha
+      },
+
+      lastname: {
+        required,
+        alpha
+      },
+
+      username: {
+        required,
+        alphaNum,
+        minLength: minLength(3)
+      },
+
+      email: {
+        required,
+        email
+      },
+
+      password: {
+        required,
+        minLength: minLength(8)
+      },
+
+      passwordRepeat: {
+        required,
+        sameAsPassword: sameAs('password')
+      },
+
+      userType: {
+        required
+      }
+    }
+  },
+
   methods: {
     registerUser (event) {
       event.preventDefault()
 
-      for (let field in this.form) {
-        if (this.form[field] === '') {
-          alert('Nie podano wszystkich danych!')
-          return
-        }
-      }
+      /* if (!this.$v.form.passwordRepeat.sameAsPassword) {
+        alert('Hasla sie roznia')
+        return
+      } */
 
-      if (this.form.password !== this.form.passwordRepeat) {
-        alert('Hasla sie roznia!')
+      if (this.$v.$invalid) {
+        alert('Niepoprawnie wypelniony formularz')
         return
       }
 
