@@ -24,7 +24,7 @@ export default {
         filterParam = this.pk
       }
 
-      let contextExercise = this.$store.state.exercises.find(exercise => exercise.pk === filterParam)
+      let contextExercise = this.$store.state.tasks.exercises.find(exercise => exercise.pk === filterParam)
 
       return contextExercise
     }
