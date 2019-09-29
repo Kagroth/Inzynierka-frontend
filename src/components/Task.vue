@@ -3,7 +3,7 @@
         <h3> {{ task.title }} </h3>
         <p>Przypisane do:</p>
         <ul>
-            <li v-for="group in task.assignedTo" :key="group"> {{ group.name }}</li>
+            <li v-for="(group, index) in task.assignedTo" :key="index"> {{ group.name }}</li>
         </ul>
         <div v-if="task.taskType.name == 'Exercise'">
             <exercise :pk="task.exercise.pk"></exercise>

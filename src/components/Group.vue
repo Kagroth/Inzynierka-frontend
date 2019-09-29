@@ -25,7 +25,7 @@
           Email
         </v-flex>
       </v-layout>
-      <v-layout row wrap v-for="user in group.users" :key="user">
+      <v-layout row wrap v-for="(user, index) in group.users" :key="index">
         <v-flex md6 offset-md2>
           {{user.first_name}} {{ user.last_name}}
         </v-flex>

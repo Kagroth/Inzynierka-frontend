@@ -10,7 +10,7 @@
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
-      <v-layout row wrap justify-space-around v-for="task in tasks" :key="task" mt-4>
+      <v-layout row wrap justify-space-around v-for="(task, index) in tasks" :key="index" mt-4>
         <v-flex md6 offset-md2>
           <h3>{{ task.title }}</h3>
         </v-flex>
