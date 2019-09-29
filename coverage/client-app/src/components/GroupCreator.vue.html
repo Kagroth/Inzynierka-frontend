@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for client-app/src/components/GroupCreator.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">client-app/src/components</a> GroupCreator.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/24</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;div&gt;
+    &lt;v-form&gt;
+      &lt;v-container&gt;
+        &lt;v-layout row wrap&gt;
+          &lt;v-flex xs12 md5 offset-md4&gt;
+            &lt;v-text-field :type="text" v-model="form.groupName" label="Nazwa grupy" required&gt;&lt;/v-text-field&gt;
+          &lt;/v-flex&gt;
+          &lt;v-flex xs12 md4 offset-md4&gt;
+            &lt;v-select :items="users" v-model="currentSelectedUser"&gt;
+                &lt;template slot="item" slot-scope="data"&gt; &lt;!-- ten slot odpowiada za to jak obiekty sa wyswietlane w liscie --&gt;
+                    {{ data.item.first_name }} {{ data.item.last_name }}
+                &lt;/template&gt;
+                &lt;template slot="selection" slot-scope="data"&gt; &lt;!-- ten slot odpowiada za to jak wybrany obiekt jest wyswietlany --&gt;
+                    {{ data.item.first_name }} {{ data.item.last_name }}
+                &lt;/template&gt;
+            &lt;/v-select&gt;
+          &lt;/v-flex&gt;
+          &lt;v-flex xs12 md3&gt;
+            &lt;v-btn color="primary" @click="addUser"&gt;Dodaj&lt;/v-btn&gt;
+          &lt;/v-flex&gt;
+          &lt;v-flex xs12 md4 offset-md4&gt;
+            &lt;v-btn color="primary" @click="createGroup"&gt;Utwórz&lt;/v-btn&gt;
+          &lt;/v-flex&gt;
+        &lt;/v-layout&gt;
+&nbsp;
+        &lt;v-layout row wrap&gt;
+            &lt;v-flex md4 offset-md4&gt;
+                &lt;h3&gt;Wybrani użytkownicy: &lt;/h3&gt;
+            &lt;/v-flex&gt;
+            &lt;v-flex md4 offset-md4 :key="selectedUser" v-for="selectedUser in form.selectedUsers"&gt;
+                {{ selectedUser.first_name }} {{ selectedUser.last_name }}
+            &lt;/v-flex&gt;
+        &lt;/v-layout&gt;
+      &lt;/v-container&gt;
+    &lt;/v-form&gt;
+    &lt;!--
+        &lt;form&gt;
+            &lt;input type="text" placeholder="Nazwa grupy" v-model="form.groupName"/&gt;&lt;br&gt;&lt;br&gt;
+            &lt;select v-model="currentSelectedUser"&gt;
+                &lt;option :key="user" v-for="user in users" :value="user.username"&gt;
+                     {{ user.first_name }} {{ user.last_name }} - {{ user.username }}
+                &lt;/option&gt;
+            &lt;/select&gt;
+            &lt;input type="button" value="Dodaj" @click="addUser"/&gt;&lt;br&gt;            
+            &lt;input type="submit" value="Utwórz" @click="createGroup"/&gt;
+        &lt;/form&gt;
+        &lt;div&gt;
+            &lt;p&gt;Wybrani użytkownicy: &lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li :key="selectedUser" v-for="selectedUser in form.selectedUsers"&gt;
+                    {{ selectedUser.first_name }} {{ selectedUser.last_name }} - {{ selectedUser.username }}
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    --&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+export default {
+<span class="fstat-no" title="function not covered" >  data () {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      currentSelectedUser: null,
+      form: {
+        groupName: '',
+        selectedUsers: []
+      }
+    }
+  },
+&nbsp;
+  methods: {
+<span class="fstat-no" title="function not covered" >    addUser () {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.currentSelectedUser === null) {</span>
+<span class="cstat-no" title="statement not covered" >        return</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (this.form.selectedUsers.includes(this.currentSelectedUser)) {</span>
+<span class="cstat-no" title="statement not covered" >        return</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.form.selectedUsers.push(this.currentSelectedUser)</span>
+    },
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    createGroup (event) {</span></span>
+<span class="cstat-no" title="statement not covered" >      event.preventDefault()</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (this.form.groupName === '') {</span>
+<span class="cstat-no" title="statement not covered" >        alert('Nie podano nazwy grupy')</span>
+<span class="cstat-no" title="statement not covered" >        return</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      this.$store</span></span>
+        .dispatch('users/createGroup', this.form)
+        .then(response =&gt; {
+<span class="cstat-no" title="statement not covered" >          let message = response.data.message</span>
+<span class="cstat-no" title="statement not covered" >          alert(message)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >          if (message === 'Grupa została utworzona') {</span>
+<span class="cstat-no" title="statement not covered" >            this.$router.push('/groups')</span>
+          }
+<span class="fstat-no" title="function not covered" >        })</span>
+        .catch(() =&gt; {
+<span class="cstat-no" title="statement not covered" >          console.log('Nie udalo sie utworzyc grupy')</span>
+<span class="cstat-no" title="statement not covered" >          alert('Nie udalo sie utworzyc grupy')</span>
+        })
+    }
+  },
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  created () {</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    this.$store</span></span>
+      .dispatch('users/loadStudents')
+      .then(() =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('Pobrano userow')</span>
+<span class="cstat-no" title="statement not covered" >        console.log(this.$store.state.users.users)</span>
+<span class="fstat-no" title="function not covered" >      })</span>
+      .catch(() =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.log('Nie udalo sie pobrac userow')</span>
+      })
+  },
+&nbsp;
+  computed: {
+<span class="fstat-no" title="function not covered" >    users () {</span>
+<span class="cstat-no" title="statement not covered" >      return this.$store.state.users.users</span>
+    }
+  }
+}
+&lt;/script&gt;
+&nbsp;
+&lt;style scoped&gt;
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Sep 29 2019 22:03:54 GMT+0200 (Środkowoeuropejski czas letni)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

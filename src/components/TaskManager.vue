@@ -18,7 +18,7 @@
         <!--
         <ul>
             <li><router-link to="/tasks/tasks">Zadania</router-link></li>
-            <li><router-link to="/tasks/exercises">Cwiczenia</router-link></li>            
+            <li><router-link to="/tasks/exercises">Cwiczenia</router-link></li>
             <li><router-link to="/tasks/tests">Kolokwia</router-link></li>
         </ul>
         <router-view></router-view>
