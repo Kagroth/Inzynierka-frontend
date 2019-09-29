@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { required } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
@@ -39,15 +41,25 @@ export default {
     }
   },
 
+  validations: {
+    form: {
+      username: {
+        required
+      },
+
+      password: {
+        required
+      }
+    }
+  },
+
   methods: {
     loginUser (event) {
       event.preventDefault()
 
-      for (let field in this.form) {
-        if (this.form[field] === '') {
-          alert('Nie podano wszystkich danych!')
-          return
-        }
+      if (this.$v.$invalid) {
+        alert('Nie podano wszystkich danych logowania')
+        return
       }
 
       this.$store
