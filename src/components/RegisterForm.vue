@@ -35,25 +35,6 @@
         </v-layout>
       </v-container>
     </v-form>
-    <form>
-      <input type="text" placeholder="Imie" v-model="form.firstname">
-      <br>
-      <input type="text" placeholder="Nazwisko" v-model="form.lastname">
-      <br>
-      <input type="text" placeholder="Nazwa uzytkownika" v-model="form.username">
-      <br>
-      <input type="email" placeholder="email" v-model="form.email">
-      <br>
-      <input type="password" placeholder="Haslo" v-model="form.password">
-      <br>
-      <input type="password" placeholder="Powtorz haslo" v-model="form.passwordRepeat">
-      <br>
-      <select v-model="form.userType">
-        <option>Student</option>
-        <option>Nauczyciel</option>
-      </select><br>
-      <input type="submit" value="Zarejestruj" @click="registerUser">
-    </form>
   </div>
 </template>
 
