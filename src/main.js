@@ -5,10 +5,12 @@ import App from './App'
 import Vuetify from 'vuetify'
 import router from './router'
 import store from './store'
+import Vuelidate from 'vuelidate'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 Vue.use(Vuetify)
+Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
 
