@@ -1,9 +1,9 @@
 <template>
     <div>
         <h3>{{ exercise.title }}</h3>
-        <p> Technologia - {{ exercise.language }}</p>
-        <p> Poziom zaawansowania - {{ exercise.level }}</p>
-        <p> Treść: <br> {{ exercise.content}}</p>
+        <p> Technologia - {{ exercise.language.name }}</p>
+        <p> Poziom zaawansowania - {{ exercise.level.name }}</p>
+        <p> Treść: <br> {{ exercise.content }}</p>
     </div>
 </template>
 <script>
