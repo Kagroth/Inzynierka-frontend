@@ -6,10 +6,24 @@
           <v-text-field :type="text" v-model="form.title" label="Tytul" required></v-text-field>
         </v-flex>
         <v-flex xs12 md4 offset-md4>
-            <v-text-field :type="text" v-model="form.language" label="Technologia" required></v-text-field>
+            <v-select :items="languages" v-model="form.language" label="Technologia" required>
+              <template slot="item" slot-scope="data"> <!-- ten slot odpowiada za to jak obiekty sa wyswietlane w liscie -->
+                    {{ data.item.name }}
+                </template>
+                <template slot="selection" slot-scope="data"> <!-- ten slot odpowiada za to jak wybrany obiekt jest wyswietlany -->
+                    {{ data.item.name }}
+                </template>
+            </v-select>
         </v-flex>
         <v-flex xs12 md4 offset-md4>
-            <v-text-field :type="text" v-model="form.level" label="Poziom zaawansowania (1-3)" required></v-text-field>
+            <v-select :items="levels" v-model="form.level" label="Poziom zaawansowania" required>
+              <template slot="item" slot-scope="data"> <!-- ten slot odpowiada za to jak obiekty sa wyswietlane w liscie -->
+                    {{ data.item.name }}
+                </template>
+                <template slot="selection" slot-scope="data"> <!-- ten slot odpowiada za to jak wybrany obiekt jest wyswietlany -->
+                    {{ data.item.name }}
+                </template>
+            </v-select>
         </v-flex>
         <v-flex xs12 md4 offset-md4>
             <v-text-field :type="text" v-model="form.content" label="Tresc" required></v-text-field>
@@ -36,6 +50,8 @@
 export default {
   data () {
     return {
+      levels: [],
+      languages: [],
       form: {
         title: '',
         language: '',
@@ -62,6 +78,16 @@ export default {
         alert(responseData.message)
       })
     }
+  },
+
+  created () {
+    this.$store.dispatch('tasks/getLanguagesAll').then(responseData => {
+      this.languages = responseData
+    })
+
+    this.$store.dispatch('tasks/getLevelsAll').then(responseData => {
+      this.levels = responseData
+    })
   }
 }
 </script>
