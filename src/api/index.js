@@ -76,5 +76,13 @@ export default {
 
   createTask (newTaskData) {
     return this.sendRequest('tasks/', 'post', newTaskData)
+  },
+
+  loadLanguagesAll () {
+    return this.sendRequest('languages/', 'get')
+  },
+
+  loadLevelsAll () {
+    return this.sendRequest('levels/', 'get')
   }
 }
