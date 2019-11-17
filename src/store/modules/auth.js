@@ -63,15 +63,25 @@ const actions = {
 
     try {
       loginResponse = await API.loginUser(loginForm)
+      console.log(loginResponse)
       commit('setToken', {
         token: loginResponse.data.access,
         username: loginForm.username
       })
 
       userDataResponse = await API.loadUserData(state.username)
+
       commit('setProfile', userDataResponse.data)
+
+      return {
+        data: loginResponse,
+        message: 'Zalogowano'
+      }
+
     } catch (e) {
-      console.log(e)
+      return {
+        message: 'Niepoprawne dane logowania'
+      }
     }
   }
 }
