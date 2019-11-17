@@ -50,6 +50,7 @@ const actions = {
     try {
       registerResponse = await API.createUser(registerForm)
       console.log(registerResponse.data)
+      return registerResponse.data
     } catch (e) {
       console.log(e)
     }
