@@ -11,7 +11,7 @@
       </v-toolbar-items>
       <v-toolbar-items v-else>
         <v-btn flat to="/tasks">Zarządzanie zadaniami</v-btn>
-        <v-btn flat to="/groups">Grupy</v-btn>
+        <v-btn flat to="/groups/groups">Grupy</v-btn>
         <v-btn flat @click="logout">Wyloguj</v-btn>
       </v-toolbar-items>
     </v-toolbar>

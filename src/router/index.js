@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import StartSite from '@/components/StartSite'
 import LoginForm from '@/components/LoginForm'
 import RegisterForm from '@/components/RegisterForm'
+import GroupManager from '@/components/GroupManager'
 import GroupListing from '@/components/GroupListing'
 import GroupCreator from '@/components/GroupCreator'
 import Group from '@/components/Group'
@@ -34,17 +35,25 @@ export default new Router({
     },
     {
       path: '/groups',
-      component: GroupListing
-    },
-    {
-      path: '/groups/:name',
-      name: 'GroupDetails',
-      component: Group
-    },
-    {
-      path: '/newGroup',
-      name: 'GroupCreator',
-      component: GroupCreator
+      name: '/MyGroups',
+      component: GroupManager,
+      children: [
+        {
+          path: 'groups',
+          name: 'GroupListing',
+          component: GroupListing
+        },
+        {
+          path: 'group/:name',
+          name: 'GroupDetails',
+          component: Group
+        },
+        {
+          path: 'newGroup',
+          name: 'GroupCreator',
+          component: GroupCreator
+        }
+      ]
     },
     {
       path: '/tasks',

@@ -6,7 +6,7 @@
           <h2>Moje Grupy</h2>
         </v-flex>
         <v-flex md2 v-if="userType.name === 'Teacher'">
-          <v-btn to="/newGroup" color="success" small>Utwórz grupę</v-btn>
+          <v-btn to="/groups/newGroup" color="success" small>Utwórz grupę</v-btn>
         </v-flex>
       </v-layout>
       <v-divider></v-divider>
