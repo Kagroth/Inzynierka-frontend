@@ -25,7 +25,7 @@
             <v-text-field type="password" v-model="form.passwordRepeat" label="Powtórz hasło" required></v-text-field>
           </v-flex>
           <v-flex md4 offset-md4>
-            <v-select :items="userTypes" label="Rodzaj użytkownika"></v-select>
+            <v-select :items="userTypes" v-model="form.userType" label="Rodzaj użytkownika"></v-select>
           </v-flex>
           <v-flex md4 offset-md4>
             <v-btn color="primary" @click="registerUser" class="ma-0">
@@ -44,7 +44,7 @@ import { required, sameAs, minLength, alpha, alphaNum, email } from 'vuelidate/l
 export default {
   data () {
     return {
-      userTypes: ['Student', 'Nauczyciel'],
+      userTypes: ['Student', 'Teacher'],
       form: {
         firstname: '',
         lastname: '',
@@ -111,7 +111,7 @@ export default {
       }
 
       console.log('Username in component: ' + this.form.username)
-      this.$store.dispatch('users/createUser', this.form)
+      this.$store.dispatch('auth/createUser', this.form).then(data => alert(data.message))
     }
   }
 }
