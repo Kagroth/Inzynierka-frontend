@@ -23,6 +23,34 @@ const mutations = {
 }
 
 const actions = {
+  async getLanguagesAll () {
+    console.log('Pobieram jezyki')
+
+    let getLanguagesAllResponse = {}
+
+    try {
+      getLanguagesAllResponse = await API.loadLanguagesAll()
+      console.log(getLanguagesAllResponse.data)
+      return getLanguagesAllResponse.data
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  async getLevelsAll () {
+    console.log('Pobieram poziomy zaawansowania')
+
+    let getLevelsAllResponse = {}
+
+    try {
+      getLevelsAllResponse = await API.loadLevelsAll()
+      console.log(getLevelsAllResponse.data)
+      return getLevelsAllResponse.data
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
   async getAllExercises ({ commit }) {
     console.log('Wysylam zadanie pobrania wszystkich ćwiczeń')
 
