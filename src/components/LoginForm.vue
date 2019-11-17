@@ -64,13 +64,13 @@ export default {
 
       this.$store
         .dispatch('auth/loginUser', this.form)
-        .then(() => {
-          alert('Zalogowano')
-          console.log('Przekierowuje do /groups')
-          this.$router.push('/')
-        })
-        .catch(() => {
-          alert('Niepowodzenie logowania')
+        .then(responseData => {
+          console.log(responseData.message)
+          alert(responseData.message)
+
+          if (responseData.data !== undefined && responseData.data.status === 200) {
+            this.$router.push('/')
+          }
         })
     }
   }
