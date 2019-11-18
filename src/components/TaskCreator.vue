@@ -1,5 +1,50 @@
 <template>
   <div>
+    <v-content>
+      <v-layout row wrap>
+        <v-flex xs12 md5 offset-md4>
+          <v-text-field :type="text" v-model="form.title" label="Tytul" required></v-text-field>
+        </v-flex>
+        <v-flex xs12 md5 offset-md4>
+          <v-select :items="taskTypes" v-model="form.taskType" label="Typ">
+
+          </v-select>
+        </v-flex>
+        <v-flex xs12 md5 offset-md4>
+          <v-select :items="exercises" v-model="form.exercise" label="Zadanie">
+            <template slot="item" slot-scope="data"> <!-- ten slot odpowiada za to jak obiekty sa wyswietlane w liscie -->
+              {{ data.item.title }}
+            </template>
+            <template slot="selection" slot-scope="data"> <!-- ten slot odpowiada za to jak wybrany obiekt jest wyswietlany -->
+              {{ data.item.title }}
+            </template>
+          </v-select>
+        </v-flex>
+        <v-flex xs12 md4 offset-md4>
+          <v-select :items="groups" v-model="selectedGroup" label="Przypisz do">
+            <template slot="item" slot-scope="data"> <!-- ten slot odpowiada za to jak obiekty sa wyswietlane w liscie -->
+              {{ data.item.name }}
+            </template>
+            <template slot="selection" slot-scope="data"> <!-- ten slot odpowiada za to jak wybrany obiekt jest wyswietlany -->
+              {{ data.item.name }}
+            </template>
+          </v-select>
+        </v-flex>
+        <v-flex xs12 md2>
+          <v-btn color="primary" @click="addGroup">Dodaj</v-btn>
+        </v-flex>
+        <v-flex xs12 md5 offset-md4>
+          <v-btn color="primary" @click="createTask">Utwórz zadanie</v-btn>
+        </v-flex>
+        <v-flex xs12 md5 offset-md4>
+          Wybrane grupy:
+        </v-flex>
+        <v-flex xs12 md5 offset-md4 v-for="(group, index) in this.form.groups" :key="index">
+          {{ group.name }}
+        </v-flex>
+      </v-layout>
+    </v-content>
+    <!--
     <h3>Kreator zadania</h3>
     <form>
       <input type="text" name="title" placeholder="Tytul" v-model="form.title">
@@ -29,6 +74,7 @@
     <ul>
       <li v-for="group in this.form.groups" :key="group">{{ group.name }}</li>
     </ul>
+    -->
   </div>
 </template>
 
@@ -36,6 +82,7 @@
 export default {
   data () {
     return {
+      taskTypes: ['Exercise', 'Test'],
       selectedGroup: '',
       form: {
         title: '',
@@ -51,7 +98,7 @@ export default {
       if (this.form.groups.includes(this.selectedGroup)) {
         return
       }
-
+      console.log('Dodaje grupe')
       this.form.groups.push(this.selectedGroup)
     },
 
