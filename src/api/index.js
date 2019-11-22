@@ -66,6 +66,10 @@ export default {
     return this.sendRequest('exercises/', 'get')
   },
 
+  loadAllTests () {
+    return this.sendRequest('tests/', 'get')
+  },
+
   loadAllTasks () {
     return this.sendRequest('tasks/', 'get')
   },
