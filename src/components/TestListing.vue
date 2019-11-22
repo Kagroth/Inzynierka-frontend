@@ -12,7 +12,7 @@
       <v-divider></v-divider>
       <v-layout row wrap justify-space-around v-for="(test, index) in tests" :key="index" mt-4>
         <v-flex md6 offset-md2>
-          <h3>{{ test.title }}</h3>
+          <h3>{{ test.name }}</h3>
         </v-flex>
         <v-flex md2>
           <v-btn @click="showTestDetails(test)" color="primary" small>Szczegóły</v-btn>
@@ -23,24 +23,23 @@
 </template>
 
 <script>
-export default {    
+export default {
   created () {
     this.$store.dispatch('tasks/getAllTests')
   },
 
   methods: {
-    showTestDetails (exercise) { /*
+    showTestDetails (test) {
       this.$router.push({
-        name: 'ExerciseDetails',
-        params: { pk: exercise.pk }
-      }) */
+        name: 'TestDetails',
+        params: { pk: test.pk }
+      })
     }
   },
 
   computed: {
     tests () {
-       return []
-       //return this.$store.state.tasks.tests
+      return this.$store.state.tasks.tests
     }
   }
 
