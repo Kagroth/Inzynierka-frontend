@@ -15,6 +15,7 @@ import ExerciseListing from '@/components/ExerciseListing'
 import ExerciseCreator from '@/components/ExerciseCreator'
 import Exercise from '@/components/Exercise'
 import TestListing from '@/components/TestListing'
+import Test from '@/components/Test'
 
 Vue.use(Router)
 
@@ -79,10 +80,6 @@ export default new Router({
           component: ExerciseListing
         },
         {
-          path: 'tests',
-          component: TestListing
-        },
-        {
           path: 'newExercise',
           component: ExerciseCreator
         },
@@ -90,6 +87,15 @@ export default new Router({
           path: 'exercise/:pk',
           name: 'ExerciseDetails',
           component: Exercise
+        },        
+        {
+          path: 'tests',
+          component: TestListing
+        },
+        {
+          path: 'tests/:pk',
+          name: 'TestDetails',
+          component: Test
         }
       ]
     }
