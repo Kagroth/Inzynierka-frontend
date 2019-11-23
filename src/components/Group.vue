@@ -33,23 +33,38 @@
           {{ user.email }}
         </v-flex>
       </v-layout>
+      <v-divider></v-divider>
+      <v-layout row wrap>
+        <v-flex offset-md2 md6>
+          <h3>Aktywne zadania:</h3>
+        </v-flex>
+      </v-layout>
+      <span v-if="group.activeTasks.length > 0">
+        <v-layout row wrap v-for="(task, index) in group.activeTasks" :key="index">
+          <v-flex md6 offset-md2>
+            {{ task.title }}
+          </v-flex>
+          <v-flex>
+           <v-btn @click="showTaskDetails(task)" color="primary" small>Szczegóły</v-btn>
+          </v-flex>
+        </v-layout>
+      </span>
+      <span v-else>
+        Brak aktywnych zadan
+      </span>
     </v-container>
-    <!--
-    <h3>{{ group.name }}</h3>
-    <span @click="deleteGroup">Usuń</span>
-    <ol>
-      <li :key="user" v-for="user in group.users">
-        <p>Imie i nazwisko: {{user.first_name}} {{ user.last_name}}</p>
-        <p>Email: {{user.email}}</p>
-        <p>Nazwa użytkownika: {{user.username}}</p>
-      </li>
-    </ol>
-    -->
   </div>
 </template>
 
 <script>
+
+import Task from '@/components/Task'
+
 export default {
+  components: {
+    'task': Task
+  },
+
   methods: {
     deleteGroup () {
       let confirmation = confirm('Czy na pewno chcesz usunąć grupę?')
@@ -60,6 +75,10 @@ export default {
           this.$router.push('/groups')
         })
       }
+    },
+
+    showTaskDetails (task) {
+      this.$router.push({ name: 'TaskDetails', params: { pk: task.pk } })
     }
   },
 

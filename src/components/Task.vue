@@ -9,6 +9,7 @@
             <exercise :pk="task.exercise.pk"></exercise>
         </div>
         <div v-else>
+          Kolokwium
         </div>
     </div>
 </template>
