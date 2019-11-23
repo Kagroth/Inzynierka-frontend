@@ -113,9 +113,26 @@ const actions = {
   },
 
   async createTest ({ commit }, newTestData) {
-    /*
-      KOD TWORZACY KOLOKWIUM
-    */
+    console.log('Wysylam zadanie utworzenia kolokwium')
+
+    let createTestResponse = {}
+
+    try {
+      createTestResponse = await API.createTest(newTestData)
+      console.log(createTestResponse)
+
+      return {
+        data: createTestResponse,
+        message: 'Test utworzony'
+      }
+    } catch (e) {
+      console.log(e)
+
+      return {
+        data: createTestResponse,
+        message: 'Nie udalo sie utworzyc testu'
+      }
+    }
   },
 
   async createTask ({ commit }, newTaskData) {
