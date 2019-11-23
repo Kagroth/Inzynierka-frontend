@@ -2,12 +2,13 @@
     <div>
         <h3>{{ test.name }}</h3>
         <div v-for="(exercise, index) in test.exercises" :key="index">
-            {{ exercise.title }}
+            <h4> Zadanie {{ index + 1 }} </h4>
+            <exercise :pk="exercise.pk"></exercise>
+            <v-divider></v-divider>
         </div>
     </div>
 </template>
 <script>
-
 import Exercise from '@/components/Exercise'
 
 export default {
