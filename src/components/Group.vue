@@ -11,7 +11,9 @@
           </v-btn>
         </v-flex>
       </v-layout>
+
       <v-divider></v-divider>
+
       <v-layout mt-2>
         <v-flex md6 offset-md2>
           <h3>Członkowie:</h3>
@@ -33,7 +35,9 @@
           {{ user.email }}
         </v-flex>
       </v-layout>
+
       <v-divider></v-divider>
+
       <v-layout row wrap>
         <v-flex offset-md2 md6>
           <h3>Aktywne zadania:</h3>
@@ -51,6 +55,24 @@
       </span>
       <span v-else>
         Brak aktywnych zadan
+      </span>
+
+      <v-divider></v-divider>
+
+      <span v-if="group.archivedTasks.length > 0">
+        <v-layout row wrap>
+          <v-flex offset-md2 md6>
+            <h3>Zadania zarchiwizowane:</h3>
+          </v-flex>
+        </v-layout>
+        <v-layout row wrap v-for="(task, index) in group.archivedTasks" :key="index">
+          <v-flex md6 offset-md2>
+            {{ task.title }}
+          </v-flex>
+          <v-flex>
+           <v-btn color="primary" small disabled>Szczegoly</v-btn>
+          </v-flex>
+        </v-layout>
       </span>
     </v-container>
   </div>
