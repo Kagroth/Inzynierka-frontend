@@ -78,6 +78,10 @@ export default {
     return this.sendRequest('exercises/', 'post', newExerciseData)
   },
 
+  createTest (newTestData) {
+    return this.sendRequest('tests/', 'post', newTestData)
+  },
+
   createTask (newTaskData) {
     return this.sendRequest('tasks/', 'post', newTaskData)
   },
