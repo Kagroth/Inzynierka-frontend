@@ -1,5 +1,6 @@
 <template>
     <div>
+        <v-btn color="error" @click="deleteExercise">Usun</v-btn>
         <h3>{{ exercise.title }}</h3>
         <p> Technologia - {{ exercise.language.name }}</p>
         <p> Poziom zaawansowania - {{ exercise.level.name }}</p>
@@ -9,6 +10,12 @@
 <script>
 export default {
   props: ['pk'],
+
+  methods: {
+    deleteExercise () {
+      this.$store.dispatch('tasks/deleteExercise', this.exercise.pk)
+    }
+  },
 
   computed: {
     exercise () {

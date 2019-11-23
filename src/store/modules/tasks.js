@@ -112,6 +112,19 @@ const actions = {
     }
   },
 
+  async deleteExercise ({ commit }, exerciseToDeletePk) {
+    console.log('Wysylam request usuniecia cwiczenia')
+
+    let deleteExerciseResponse = {}
+
+    try {
+      deleteExerciseResponse = await API.deleteExercise(exerciseToDeletePk)
+      console.log(deleteExerciseResponse)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
   async createTest ({ commit }, newTestData) {
     console.log('Wysylam zadanie utworzenia kolokwium')
 

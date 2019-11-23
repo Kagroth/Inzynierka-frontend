@@ -78,6 +78,10 @@ export default {
     return this.sendRequest('exercises/', 'post', newExerciseData)
   },
 
+  deleteExercise (exerciseToDeletePk) {
+    return this.sendRequest('exercises/' + exerciseToDeletePk, 'delete')
+  },
+
   createTest (newTestData) {
     return this.sendRequest('tests/', 'post', newTestData)
   },
