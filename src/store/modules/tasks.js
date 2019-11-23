@@ -148,6 +148,19 @@ const actions = {
     }
   },
 
+  async deleteTest ({ commit }, testToDeletePk) {
+    console.log('Wysylam request usuniecia kolokwium')
+
+    let deleteTestResponse = {}
+
+    try {
+      deleteTestResponse = await API.deleteTest(testToDeletePk)
+      console.log(deleteTestResponse)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
   async createTask ({ commit }, newTaskData) {
     console.log('Wysylam zadanie utworzenia nowego zadania')
 

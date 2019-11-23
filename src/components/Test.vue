@@ -1,5 +1,6 @@
 <template>
     <div>
+        <v-btn color="error" @click="deleteTest">Usun</v-btn>
         <h3>{{ test.name }}</h3>
         <div v-for="(exercise, index) in test.exercises" :key="index">
             <h4> Zadanie {{ index + 1 }} </h4>
@@ -17,6 +18,12 @@ export default {
   },
 
   props: ['pk'],
+
+  methods: {
+    deleteTest () {
+      this.$store.dispatch('tasks/deleteTest', this.test.pk)
+    }
+  },
 
   computed: {
     test () {

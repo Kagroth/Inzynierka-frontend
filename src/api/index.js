@@ -86,6 +86,10 @@ export default {
     return this.sendRequest('tests/', 'post', newTestData)
   },
 
+  deleteTest (testToDeletePk) {
+    return this.sendRequest('tests/' + testToDeletePk, 'delete')
+  },
+
   createTask (newTaskData) {
     return this.sendRequest('tasks/', 'post', newTaskData)
   },
