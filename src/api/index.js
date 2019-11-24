@@ -58,6 +58,10 @@ export default {
     return this.sendRequest('groups/', 'post', newGroupData)
   },
 
+  updateGroup (changedGroupData) {
+    return this.sendRequest('groups/' + changedGroupData.pk + '/', 'put', changedGroupData)
+  },
+
   deleteGroup (primaryKey) {
     return this.sendRequest('groups/', 'delete', primaryKey)
   },

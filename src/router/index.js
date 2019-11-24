@@ -6,6 +6,7 @@ import RegisterForm from '@/components/RegisterForm'
 import GroupManager from '@/components/GroupManager'
 import GroupListing from '@/components/GroupListing'
 import GroupCreator from '@/components/GroupCreator'
+import GroupEditor from '@/components/GroupEditor'
 import Group from '@/components/Group'
 import TaskManager from '@/components/TaskManager'
 import TaskListing from '@/components/TaskListing'
@@ -49,6 +50,11 @@ export default new Router({
           path: 'group/:name',
           name: 'GroupDetails',
           component: Group
+        },
+        {
+          path: 'group/:name/edit',
+          name: 'GroupEditor',
+          component: GroupEditor
         },
         {
           path: 'newGroup',

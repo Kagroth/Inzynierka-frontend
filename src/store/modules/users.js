@@ -72,6 +72,17 @@ const actions = {
     }
   },
 
+  async updateGroup ({ commit }, changedGroupData) {
+    let updateGroupResponse = {}
+
+    try {
+      updateGroupResponse = await API.updateGroup(changedGroupData)
+      console.log(updateGroupResponse)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
   async deleteGroup ({ commit }, pk) {
     let deleteGroupResponse = {}
 

@@ -5,9 +5,14 @@
         <v-flex md6 offset-md2>
           <h3> {{ group.name }}</h3>
         </v-flex>
-        <v-flex md2>
+        <v-flex md1>
+          <v-btn @click="editGroup" color="success" small>
+            Edytuj
+          </v-btn>
+        </v-flex>
+        <v-flex md1>
           <v-btn @click="deleteGroup" color="error" small>
-            Usuń grupę
+            Usuń
           </v-btn>
         </v-flex>
       </v-layout>
@@ -88,6 +93,11 @@ export default {
   },
 
   methods: {
+    editGroup () {
+      let currentGroup = this.$route.params.name
+      this.$router.push({ name: 'GroupEditor', params: { name: currentGroup } })
+    },
+
     deleteGroup () {
       let confirmation = confirm('Czy na pewno chcesz usunąć grupę?')
 
