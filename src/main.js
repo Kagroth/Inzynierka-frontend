@@ -23,6 +23,13 @@ new Vue({
   template: '<App/>',
 
   created () {
+    window.addEventListener('beforeunload', this.pageUnloadHandler)
     this.$store.commit('auth/init')
+  },
+
+  methods: {
+    pageUnloadHandler () {
+      this.$store.commit('auth/init')
+    }
   }
 })
