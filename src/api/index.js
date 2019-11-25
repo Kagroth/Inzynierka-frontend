@@ -4,16 +4,28 @@ const APIInstance = axios.create({
   baseURL: 'http://localhost:8000/'
 })
 
+let token = ''
+let refreshToken = ''
+
 export default {
   APIInstance,
+  token,
+  refreshToken,
 
-  setAuthToken (token) {
+  setAuthToken (token, refreshToken = null) {
+    this.token = token
+
+    if (refreshToken !== null) {
+      this.refreshToken = refreshToken
+      console.log(refreshToken)
+    }
+
     this.APIInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
   },
 
   sendRequest (url, method, data = null) {
     let config = {}
-
+  
     if (data === null) {
       config = {
         url: url,
@@ -28,6 +40,36 @@ export default {
     }
 
     return this.APIInstance.request(config)
+      .then(response => {
+        return response
+      })
+      .catch(error => {
+        if (error.response.status === 401) {
+          console.log('Brak autoryzacji')
+          console.log(this.refreshToken)
+
+          return this.APIInstance.request({
+            url: 'token/refresh/',
+            method: 'POST',
+            data: {
+              refresh: localStorage.getItem('refresh')
+            }
+          })
+            .then(success => {
+              console.log(success)
+              localStorage.setItem('token', success.data.access)
+              this.setAuthToken(success.data.access)
+
+              return this.APIInstance.request(config)
+            })
+            .catch(error => {
+              console.log(error)
+              console.log(error.response)
+              return error
+            })
+        }
+        return error
+      })
   },
 
   loginUser (loginData) {
